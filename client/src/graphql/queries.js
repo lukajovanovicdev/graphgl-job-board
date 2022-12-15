@@ -39,3 +39,19 @@ export const getJob = async (id) => {
   const { job } = await request(GRAPHQL_URL, query, variables);
   return job;
 };
+
+export const getCompany = async (id) => {
+  const query = gql`
+    query CompanyQuery($companyId: ID!) {
+      company(id: $companyId) {
+        id
+        name
+        description
+      }
+    }
+  `;
+
+  const variables = { companyId: id };
+  const { company } = await request(GRAPHQL_URL, query, variables);
+  return company;
+};
