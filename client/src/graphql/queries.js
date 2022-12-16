@@ -38,28 +38,19 @@ export const JOBS_QUERY = gql`
   ${JOB_DETAIL_FRAGMENT}
 `;
 
-export const getCompany = async (id) => {
-  const query = gql`
-    query CompanyQuery($companyId: ID!) {
-      company(id: $companyId) {
+export const COMPANY_QUERY = gql`
+  query CompanyQuery($id: ID!) {
+    company(id: $id) {
+      id
+      name
+      description
+      jobs {
         id
-        name
-        description
-        jobs {
-          id
-          title
-        }
+        title
       }
     }
-  `;
-
-  const variables = { companyId: id };
-
-  const {
-    data: { company },
-  } = await client.query({ query, variables });
-  return company;
-};
+  }
+`;
 
 export const createJob = async (input) => {
   const mutation = gql`
