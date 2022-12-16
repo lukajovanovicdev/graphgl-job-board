@@ -3,8 +3,12 @@ import { Company, Job } from './db.js';
 export const resolvers = {
   Query: {
     jobs: async () => Job.findAll(),
-    job: (_, { id }) => Job.findById(id),
-    company: (_, { id }) => Company.findById(id),
+    job: (_root, { id }) => Job.findById(id),
+    company: (_root, { id }) => Company.findById(id),
+  },
+
+  Mutation: {
+    createJob: (_root, { input }) => Job.create(input),
   },
 
   Job: {
