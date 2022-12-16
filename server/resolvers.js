@@ -8,8 +8,10 @@ export const resolvers = {
   },
 
   Job: {
-    company: (job) => {
-      return Company.findById(job.companyId);
-    },
+    company: (job) => Company.findById(job.companyId),
+  },
+
+  Company: {
+    jobs: (company) => Job.findAll((job) => job.companyId === company.id),
   },
 };
