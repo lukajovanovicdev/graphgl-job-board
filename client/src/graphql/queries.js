@@ -20,7 +20,7 @@ const JOB_DETAIL_FRAGMENT = gql`
   }
 `;
 
-const JOB_QUERY = gql`
+export const JOB_QUERY = gql`
   query JobQuery($id: ID!) {
     job(id: $id) {
       ...JobDetail
@@ -37,14 +37,6 @@ export const JOBS_QUERY = gql`
   }
   ${JOB_DETAIL_FRAGMENT}
 `;
-
-export const getJob = async (id) => {
-  const variables = { id };
-  const {
-    data: { job },
-  } = await client.query({ query: JOB_QUERY, variables });
-  return job;
-};
 
 export const getCompany = async (id) => {
   const query = gql`
