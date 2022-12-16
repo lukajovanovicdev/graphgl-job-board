@@ -52,10 +52,10 @@ export const COMPANY_QUERY = gql`
 `;
 
 export const CREATE_JOB_MUTATION = gql`
-    mutation CreateJob($input: CreateJobInput!) {
-      job: createJob(input: $input) {
-        ...JobDetail
-      }
-      ${JOB_DETAIL_FRAGMENT}
+  mutation CreateJob($input: CreateJobInput!) {
+    job: createJob(input: $input) {
+      ...JobDetail
     }
-  `;
+  }
+  ${JOB_DETAIL_FRAGMENT}
+`;
